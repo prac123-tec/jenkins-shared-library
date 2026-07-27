@@ -2,7 +2,7 @@ def call() {
 
     sshagent(['deploy-server-ssh']) {
 
-        sh """
+        sh '''
 ssh -o StrictHostKeyChecking=no ec2-user@13.233.80.41 <<EOF
 aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 405305209495.dkr.ecr.ap-south-1.amazonaws.com
 
@@ -17,7 +17,7 @@ docker run -d \
   -p 80:80 \
   405305209495.dkr.ecr.ap-south-1.amazonaws.com/platform-control-service:v1
 EOF
-"""
+'''
     }
 
 }
